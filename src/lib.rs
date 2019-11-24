@@ -21,8 +21,6 @@ pub mod prelude {
     pub use log::{debug, error, info, trace, warn};
 
     pub use rayon::prelude::*;
-
-    pub use lazy_static::*;
 }
 
 pub mod cli;
