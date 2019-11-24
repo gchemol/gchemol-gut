@@ -1,8 +1,6 @@
 // imports
 
 // [[file:~/Workspace/Programming/guts/guts.note::*imports][imports:1]]
-use structopt::*;
-
 use crate::prelude::*;
 // imports:1 ends here
 
@@ -42,15 +40,15 @@ pub trait Configure: Default + de::DeserializeOwned + Serialize {
     }
 }
 
-// FIXME: remove
-pub trait DocHelp: StructOpt {
-    /// Show help for configuration parameters
-    fn print_help() {
-        Self::clap().print_help().expect("clap help");
-    }
-}
+// // FIXME: remove
+// pub trait DocHelp: StructOpt {
+//     /// Show help for configuration parameters
+//     fn print_help() {
+//         Self::clap().print_help().expect("clap help");
+//     }
+// }
 
-impl<T> DocHelp for T where T: StructOpt {}
+// impl<T> DocHelp for T where T: StructOpt {}
 // trait:1 ends here
 
 // reexports
