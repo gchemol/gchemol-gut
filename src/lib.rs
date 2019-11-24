@@ -8,6 +8,8 @@
 
 // [[file:~/Workspace/Programming/guts/guts.note::*pub][pub:1]]
 pub mod prelude {
+    pub use crate::config::Configure;
+
     pub use itertools::Itertools;
 
     #[doc(hidden)]
