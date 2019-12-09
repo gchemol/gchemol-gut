@@ -1,7 +1,7 @@
 // src
 
 // [[file:~/Workspace/Programming/guts/guts.note::*src][src:1]]
-pub use structopt::StructOpt;
+// pub use structopt::StructOpt;
 
 /// A handy alias for `Result` that carries a generic error type.
 pub type CliResult = ::std::result::Result<(), ::exitfailure::ExitFailure>;
