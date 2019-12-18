@@ -28,4 +28,6 @@ pub mod prelude {
 pub mod cli;
 pub mod config;
 pub mod fs;
+
+pub use itertools;
 // pub:1 ends here
