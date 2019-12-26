@@ -29,5 +29,6 @@ pub mod cli;
 pub mod config;
 pub mod fs;
 
+pub use failure;
 pub use itertools;
 // pub:1 ends here
