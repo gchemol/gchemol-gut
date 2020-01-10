@@ -1,8 +1,8 @@
 // imports
 
 // [[file:~/Workspace/Programming/guts/guts.note::*imports][imports:1]]
-use std::fs::File;
-use std::io::{BufReader, BufWriter, Read, Write};
+pub use std::fs::File;
+pub use std::io::{BufRead, BufReader, BufWriter, Read, Write};
 
 pub use std::path::{Path, PathBuf};
 
