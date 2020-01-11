@@ -10,7 +10,7 @@ authors = ["Wenping Guo <ybyygu@gmail.com>"]
 [dependencies]
 # core utils
 serde = {version="1", features = ["derive"]}
-failure = "0.1"
+anyhow = "1"                    # better than failure
 itertools = "0.8"
 # logging
 log = "^0.4"

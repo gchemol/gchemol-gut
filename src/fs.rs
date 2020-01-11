@@ -6,7 +6,7 @@ pub use std::io::{BufRead, BufReader, BufWriter, Read, Write};
 
 pub use std::path::{Path, PathBuf};
 
-use failure::{ensure, Error, ResultExt};
+use anyhow::*;
 // imports:1 ends here
 
 // pub
@@ -22,12 +22,12 @@ pub fn read_file<P: AsRef<Path>>(path: P) -> Result<String, Error> {
         path
     );
 
-    let file = File::open(path).with_context(|_| format!("Could not open file {:?}", path))?;
+    let file = File::open(path).with_context(|| format!("Could not open file {:?}", path))?;
     let mut file = BufReader::new(file);
 
     let mut result = String::new();
     file.read_to_string(&mut result)
-        .with_context(|_| format!("Could not read file {:?}", path))?;
+        .with_context(|| format!("Could not read file {:?}", path))?;
 
     Ok(result)
 }
@@ -39,11 +39,11 @@ pub fn write_to_file<P: AsRef<Path>>(path: P, content: &str) -> Result<(), Error
     let path = path.as_ref();
 
     let file =
-        File::create(path).with_context(|_| format!("Could not create/open file {:?}", path))?;
+        File::create(path).with_context(|| format!("Could not create/open file {:?}", path))?;
     let mut file = BufWriter::new(file);
 
     file.write_all(content.as_bytes())
-        .with_context(|_| format!("Could not write to file {:?}", path))?;
+        .with_context(|| format!("Could not write to file {:?}", path))?;
 
     Ok(())
 }
