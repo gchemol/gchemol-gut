@@ -13,8 +13,9 @@ pub mod prelude {
     pub use itertools::Itertools;
 
     #[doc(hidden)]
-    pub use failure::{bail, ensure, err_msg, format_err, ResultExt};
-    pub type Result<T> = ::std::result::Result<T, failure::Error>;
+    // pub use failure::{bail, ensure, err_msg, format_err, ResultExt};
+    // pub type Result<T> = ::std::result::Result<T, failure::Error>;
+    pub use anyhow::*;
 
     #[doc(hidden)]
     pub use serde::*;
@@ -29,6 +30,5 @@ pub mod cli;
 pub mod config;
 pub mod fs;
 
-pub use failure;
 pub use itertools;
 // pub:1 ends here
