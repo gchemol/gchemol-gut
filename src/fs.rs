@@ -2,7 +2,7 @@
 
 // [[file:~/Workspace/Programming/guts/guts.note::*imports][imports:1]]
 pub use std::fs::File;
-pub use std::io::{BufRead, BufReader, BufWriter, Read, Write};
+pub use std::io::{BufRead, BufReader, BufWriter, Read, Seek, Write};
 
 pub use std::path::{Path, PathBuf};
 
