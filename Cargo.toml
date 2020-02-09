@@ -1,6 +1,6 @@
 [package]
 name = "gchemol-gut"
-version = "0.0.7"
+version = "0.0.8"
 edition = "2018"
 authors = ["Wenping Guo <ybyygu@gmail.com>"]
 description = "Selected utilities for Rust development"
@@ -21,7 +21,6 @@ toml = "0.5"
 lazy_static = "1.3"
 # command line
 structopt = "0.3"
-exitfailure = "0.5"
 # parallel
 rayon = "1"
 

@@ -1,10 +1,12 @@
 // src
 
-// [[file:~/Workspace/Programming/guts/guts.note::*src][src:1]]
+// [[file:~/Workspace/Programming/gchemol-rs/gut/gut.note::*src][src:1]]
 // pub use structopt::StructOpt;
 
 /// A handy alias for `Result` that carries a generic error type.
-pub type CliResult = ::std::result::Result<(), ::exitfailure::ExitFailure>;
+// pub type CliResult = ::std::result::Result<(), ::exitfailure::ExitFailure>;
+#[deprecated(note = "Use anyhow::Result<()>")]
+pub type CliResult = anyhow::Result<()>;
 
 /// https://docs.rs/env_logger/*/env_logger/
 pub fn setup_logger() {
