@@ -12,9 +12,9 @@ pub mod prelude {
 
     pub use itertools::Itertools;
 
-    pub use anyhow::Context as _Context;
-    pub use anyhow::{Result, Error};
-    pub use anyhow::{bail, ensure, anyhow, format_err};
+    pub use anyhow::Context as _Context; // avoid name conflicting
+    pub use anyhow::{anyhow, bail, ensure, format_err};
+    pub use anyhow::{Error, Result};
 
     #[doc(hidden)]
     pub use serde::*;
@@ -23,6 +23,10 @@ pub mod prelude {
     pub use log::{debug, error, info, trace, warn};
 
     pub use rayon::prelude::*;
+
+    // for write! and writeln! macros
+    // avoid name conflict with std::io::Write
+    pub use std::fmt::Write as FmtWrite;
 }
 
 pub mod cli;

@@ -1,6 +1,6 @@
 [package]
 name = "gchemol-gut"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2018"
 authors = ["Wenping Guo <ybyygu@gmail.com>"]
 description = "Selected utilities for Rust development"
@@ -25,3 +25,6 @@ structopt = "0.3"
 rayon = "1"
 
 [dev-dependencies]
+
+[features]
+adhoc = [] # for adhoc hacking
