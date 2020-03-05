@@ -40,3 +40,29 @@ pub fn setup_logger_for_test() {
     }
 }
 // src:1 ends here
+
+// [[file:~/Workspace/Programming/gchemol-rs/gut/gut.note::*verbose][verbose:1]]
+// adopted from: https://github.com/rust-cli/clap-verbosity-flag
+#[derive(structopt::StructOpt, Debug, Clone, Default)]
+pub struct Verbosity {
+    /// Pass many times for more log output
+    ///
+    /// By default, it will only report warnings.
+    #[structopt(long, short = "v", parse(from_occurrences))]
+    verbose: i8,
+}
+
+impl Verbosity {
+    /// Set up logging according to verbosity level.
+    pub fn setup_logger(&self) {
+        match self.verbose {
+            0 => std::env::set_var("RUST_LOG", "warn"),
+            1 => std::env::set_var("RUST_LOG", "info"),
+            2 => std::env::set_var("RUST_LOG", "debug"),
+            _ => std::env::set_var("RUST_LOG", "trace"),
+        }
+
+        pretty_env_logger::init();
+    }
+}
+// verbose:1 ends here
