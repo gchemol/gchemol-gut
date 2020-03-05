@@ -1,5 +1,3 @@
-// src
-
 // [[file:~/Workspace/Programming/gchemol-rs/gut/gut.note::*src][src:1]]
 // pub use structopt::StructOpt;
 
@@ -12,9 +10,9 @@ pub type CliResult = anyhow::Result<()>;
 pub fn setup_logger() {
     use log::*;
 
-    // only logging error by default
+    // only logging warn by default
     if std::env::var("RUST_LOG").is_err() {
-        std::env::set_var("RUST_LOG", "error");
+        std::env::set_var("RUST_LOG", "warn");
     }
 
     pretty_env_logger::init();
