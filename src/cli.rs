@@ -17,7 +17,7 @@ pub fn setup_logger() {
         std::env::set_var("RUST_LOG", "warn");
     }
 
-    pretty_env_logger::init();
+    pretty_env_logger::init_timed();
 
     if !log_enabled!(Level::Debug) {
         eprintln!("To see the full logging, try setting `RUST_LOG=debug`.");
@@ -62,7 +62,7 @@ impl Verbosity {
             _ => std::env::set_var("RUST_LOG", "trace"),
         }
 
-        pretty_env_logger::init();
+        pretty_env_logger::init_timed();
     }
 }
 // verbose:1 ends here
