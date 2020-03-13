@@ -1,5 +1,8 @@
 // [[file:~/Workspace/Programming/gchemol-rs/gut/gut.note::*src][src:1]]
-// pub use structopt::StructOpt;
+// NOTE: To make StructOpt derive work, structopt must be included in Cargo.toml
+pub use structopt::*;
+
+pub use duct;
 
 /// A handy alias for `Result` that carries a generic error type.
 // pub type CliResult = ::std::result::Result<(), ::exitfailure::ExitFailure>;

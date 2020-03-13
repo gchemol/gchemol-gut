@@ -1,10 +1,6 @@
-// mods
-
 // [[file:~/Workspace/Programming/gchemol-rs/gut/gut.note::*mods][mods:1]]
 
 // mods:1 ends here
-
-// pub
 
 // [[file:~/Workspace/Programming/gchemol-rs/gut/gut.note::*pub][pub:1]]
 pub mod prelude {
@@ -17,6 +13,7 @@ pub mod prelude {
     pub use anyhow::{Error, Result};
 
     #[doc(hidden)]
+    // NOTE: to make serde deriving work, serde must be included in Cargo.toml
     pub use serde::*;
 
     #[doc(hidden)]
