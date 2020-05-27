@@ -24,6 +24,9 @@ pub mod prelude {
     // for write! and writeln! macros
     // avoid name conflict with std::io::Write
     pub use std::fmt::Write as FmtWrite;
+
+    // FooBar::from_str
+    pub use std::str::FromStr;
 }
 
 pub mod cli;
