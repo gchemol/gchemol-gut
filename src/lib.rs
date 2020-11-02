@@ -1,8 +1,8 @@
-// [[file:~/Workspace/Programming/gchemol-rs/gut/gut.note::*mods][mods:1]]
+// [[file:../gut.note::*mods][mods:1]]
 
 // mods:1 ends here
 
-// [[file:~/Workspace/Programming/gchemol-rs/gut/gut.note::*pub][pub:1]]
+// [[file:../gut.note::*pub][pub:1]]
 pub mod prelude {
     pub use crate::config::Configure;
 
@@ -16,6 +16,7 @@ pub mod prelude {
     // NOTE: to make serde deriving work, serde must be included in Cargo.toml
     pub use serde::*;
 
+    pub use super::log_dbg;
     #[doc(hidden)]
     pub use log::{debug, error, info, trace, warn};
 
@@ -34,4 +35,12 @@ pub mod config;
 pub mod fs;
 
 pub use itertools;
+
+/// Similar to dbg! macro, but with logging (info!)
+#[macro_export]
+macro_rules! log_dbg {
+    () => {
+        info!("{}:{}", file!(), line!());
+    };
+}
 // pub:1 ends here
