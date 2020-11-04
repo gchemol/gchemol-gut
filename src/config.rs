@@ -1,19 +1,16 @@
-// imports
-
-// [[file:~/Workspace/Programming/guts/guts.note::*imports][imports:1]]
+// [[file:../gut.note::*imports][imports:1]]
 use crate::prelude::*;
 // imports:1 ends here
 
-// trait
-
-// [[file:~/Workspace/Programming/guts/guts.note::*trait][trait:1]]
+// [[file:../gut.note::*trait][trait:1]]
 pub trait Configure: Default + de::DeserializeOwned + Serialize {
+    #[deprecated(note = "plan to be removed")]
     /// Print current configuration in toml format.
     fn print_toml(&self) {
-        let x = toml::to_string(self).unwrap();
-        println!("{:}", x);
+        println!("{:}", self.to_toml().unwrap());
     }
 
+    #[deprecated(note = "plan to be removed")]
     /// Load configuration from default config file.
     ///
     /// # Panics
@@ -27,6 +24,7 @@ pub trait Configure: Default + de::DeserializeOwned + Serialize {
         Self::load_from_file(config_file)
     }
 
+    #[deprecated(note = "plan to be removed")]
     /// Load configuration from file `config_file`.
     ///
     /// # Panics
@@ -38,28 +36,38 @@ pub trait Configure: Default + de::DeserializeOwned + Serialize {
         let toml_str = crate::fs::read_file(path).expect("Failed to read config file!");
         toml::from_str(&toml_str).expect("Failed to parse toml config!")
     }
+
+    /// Deserialize an instance of type T from a string of JSON text.
+    fn from_json(s: &str) -> Result<Self> {
+        let x = serde_json::from_str(s)?;
+        Ok(x)
+    }
+
+    /// Deserialize an instance of type T from a string of TOML text.
+    fn from_toml(s: &str) -> Result<Self> {
+        let x = toml::from_str(s)?;
+        Ok(x)
+    }
+
+    /// Serialize it to a JSON string.
+    fn to_json(&self) -> Result<String> {
+        let s = serde_json::to_string_pretty(self)?;
+        Ok(s)
+    }
+
+    /// Serialize self to a TOML string.
+    fn to_toml(&self) -> Result<String> {
+        let s = toml::to_string(self)?;
+        Ok(s)
+    }
 }
-
-// // FIXME: remove
-// pub trait DocHelp: StructOpt {
-//     /// Show help for configuration parameters
-//     fn print_help() {
-//         Self::clap().print_help().expect("clap help");
-//     }
-// }
-
-// impl<T> DocHelp for T where T: StructOpt {}
 // trait:1 ends here
 
-// reexports
-
-// [[file:~/Workspace/Programming/guts/guts.note::*reexports][reexports:1]]
+// [[file:../gut.note::*reexports][reexports:1]]
 pub use lazy_static::*;
 // reexports:1 ends here
 
-// test
-
-// [[file:~/Workspace/Programming/guts/guts.note::*test][test:1]]
+// [[file:../gut.note::*test][test:1]]
 #[cfg(test)]
 mod test {
     use super::*;
@@ -101,7 +109,8 @@ mod test {
 
     #[test]
     fn test_settings() {
-        Settings::default().print_toml();
+        let s = Settings::default().to_json().unwrap();
+        println!("{}", s);
     }
 }
 // test:1 ends here
