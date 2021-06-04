@@ -29,10 +29,10 @@ pub mod prelude {
     // FooBar::from_str
     pub use std::str::FromStr;
 }
-
 pub mod cli;
 pub mod config;
 pub mod fs;
+pub mod utils;
 
 pub use itertools;
 
