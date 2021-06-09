@@ -30,10 +30,12 @@ pub mod prelude {
     pub use std::str::FromStr;
 }
 pub mod cli;
+pub mod cli_clap;
 pub mod config;
 pub mod fs;
 pub mod utils;
 
+// re-exports external crates
 pub use itertools;
 
 /// Similar to dbg! macro, but with logging (info!)
