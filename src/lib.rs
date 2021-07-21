@@ -1,5 +1,10 @@
 // [[file:../gut.note::*mods][mods:1]]
-
+pub mod cli;
+pub mod cli_clap;
+pub mod config;
+pub mod fs;
+pub mod logger;
+pub mod utils;
 // mods:1 ends here
 
 // [[file:../gut.note::*pub][pub:1]]
@@ -30,11 +35,6 @@ pub mod prelude {
     // FooBar::from_str
     pub use std::str::FromStr;
 }
-pub mod cli;
-pub mod cli_clap;
-pub mod config;
-pub mod fs;
-pub mod utils;
 
 // re-exports external crates
 pub use itertools;
