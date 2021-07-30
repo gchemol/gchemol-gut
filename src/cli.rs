@@ -26,11 +26,14 @@ pub struct Verbosity {
 impl Verbosity {
     /// Set up logging according to verbosity level.
     pub fn setup_logger(&self) {
-        match self.verbose {
-            0 => std::env::set_var("RUST_LOG", "warn"),
-            1 => std::env::set_var("RUST_LOG", "info"),
-            2 => std::env::set_var("RUST_LOG", "debug"),
-            _ => std::env::set_var("RUST_LOG", "trace"),
+        // allow user to override using RUST_LOG env
+        if std::env::var("RUST_LOG").is_err() {
+            match self.verbose {
+                0 => std::env::set_var("RUST_LOG", "warn"),
+                1 => std::env::set_var("RUST_LOG", "info"),
+                2 => std::env::set_var("RUST_LOG", "debug"),
+                _ => std::env::set_var("RUST_LOG", "trace"),
+            }
         }
 
         crate::logger::setup_logger();
@@ -38,11 +41,14 @@ impl Verbosity {
 
     /// Set up logging according to verbosity level.
     pub fn setup_plain_logger(&self) {
-        match self.verbose {
-            0 => std::env::set_var("RUST_LOG", "warn"),
-            1 => std::env::set_var("RUST_LOG", "info"),
-            2 => std::env::set_var("RUST_LOG", "debug"),
-            _ => std::env::set_var("RUST_LOG", "trace"),
+        // allow user to override using RUST_LOG env
+        if std::env::var("RUST_LOG").is_err() {
+            match self.verbose {
+                0 => std::env::set_var("RUST_LOG", "warn"),
+                1 => std::env::set_var("RUST_LOG", "info"),
+                2 => std::env::set_var("RUST_LOG", "debug"),
+                _ => std::env::set_var("RUST_LOG", "trace"),
+            }
         }
 
         crate::logger::setup_plain_logger();
