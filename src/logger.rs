@@ -37,8 +37,8 @@ pub fn setup_logger() {
     }
     formatted_builder(false).init();
 
-    if !log::log_enabled!(log::Level::Debug) {
-        eprintln!("To see the full logging, try setting `RUST_LOG=debug`.");
+    if !log::log_enabled!(log::Level::Info) {
+        eprintln!("To see the full logging, try setting `RUST_LOG=info`.");
     }
 }
 
@@ -56,7 +56,7 @@ pub fn setup_logger_for_test() {
     }
 }
 
-/// A plain logger no formatting, like in println
+/// A plain logger no formatting, like using println macro
 pub fn setup_plain_logger() {
     use std::io::Write;
 
