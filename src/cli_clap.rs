@@ -1,14 +1,17 @@
-// [[file:../gut.note::*src][src:1]]
+// [[file:../gut.note::32071587][32071587]]
 // NOTE: To make Clap derive work, clap must be included in Cargo.toml
-pub use clap::{Clap, IntoApp};
+// pub use clap::{Clap, IntoApp};
+//
+// NOTE: since v3.0.0.beta5: we need derive(Parser) instead of Clap
+use clap::{AppSettings, Parser, IntoApp};
 pub use duct;
 
 pub use crate::logger::setup_logger;
 pub use crate::logger::setup_logger_for_test;
-// src:1 ends here
+// 32071587 ends here
 
-// [[file:../gut.note::*verbose][verbose:1]]
-#[derive(Clap, Debug, Clone, Default)]
+// [[file:../gut.note::352ffd7a][352ffd7a]]
+#[derive(Parser, Debug, Clone, Default)]
 pub struct Verbosity {
     /// Pass many times for more log output (-v, -vv, -vvv)
     ///
@@ -30,4 +33,4 @@ impl Verbosity {
         setup_logger();
     }
 }
-// verbose:1 ends here
+// 352ffd7a ends here
