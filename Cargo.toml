@@ -1,6 +1,6 @@
 [package]
 name = "gchemol-gut"
-version = "0.1.7"
+version = "0.1.8"
 edition = "2018"
 authors = ["Wenping Guo <ybyygu@gmail.com>"]
 description = "Selected utilities for Rust development"
@@ -24,6 +24,7 @@ lazy_static = "1"
 structopt = "0.3"
 duct = "0.13"
 clap = "3.0.0-beta.5"
+tempfile = "3"
 # parallel
 rayon = "1"
 

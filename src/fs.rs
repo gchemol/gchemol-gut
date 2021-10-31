@@ -7,7 +7,9 @@ pub use std::path::{Path, PathBuf};
 use anyhow::*;
 // imports:1 ends here
 
-// [[file:../gut.note::*pub][pub:1]]
+// [[file:../gut.note::eabef1ae][eabef1ae]]
+pub use tempfile;
+
 /// Read file content into string
 pub fn read_file<P: AsRef<Path>>(path: P) -> Result<String> {
     let s = std::fs::read_to_string(&path).with_context(|| format!("Failed to read string from file {:?}", path.as_ref()))?;
@@ -41,4 +43,4 @@ pub fn write_script_file(script_path: &Path, content: &str) -> Result<()> {
 
     Ok(())
 }
-// pub:1 ends here
+// eabef1ae ends here
