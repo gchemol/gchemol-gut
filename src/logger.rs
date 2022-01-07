@@ -1,24 +1,12 @@
-// [[file:../gut.note::*core][core:1]]
+// [[file:../gut.note::379d56a3][379d56a3]]
 /// Returns a `env_logger::Builder` for further customization.
 fn formatted_builder(test: bool) -> env_logger::Builder {
     let mut builder = env_logger::builder();
     builder.format_timestamp_secs();
     builder.is_test(test);
-
-    // builder.format(|f, record| {
-    //     writeln!(
-    //         f,
-    //         "{} {} > {}",
-    //         record.level(),
-    //         //Format like you want to: <-----------------
-    //         chrono::Local::now().format("%Y-%m-%d %H:%M:%S%.3f"),
-    //         record.args()
-    //     );
-    // });
-
     builder
 }
-// core:1 ends here
+// 379d56a3 ends here
 
 // [[file:../gut.note::*pub][pub:1]]
 /// Setup logging for cmdline uses

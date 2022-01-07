@@ -1,16 +1,11 @@
-// [[file:../gut.note::*src][src:1]]
+// [[file:../gut.note::0ff169d2][0ff169d2]]
 // NOTE: To make StructOpt derive work, structopt must be included in Cargo.toml
 pub use structopt::*;
 
 pub use duct;
 
-/// A handy alias for `Result` that carries a generic error type.
-// pub type CliResult = ::std::result::Result<(), ::exitfailure::ExitFailure>;
-#[deprecated(note = "Use anyhow::Result<()>")]
-pub type CliResult = anyhow::Result<()>;
-
 pub use crate::logger::{setup_logger, setup_logger_for_test};
-// src:1 ends here
+// 0ff169d2 ends here
 
 // [[file:../gut.note::*verbose][verbose:1]]
 // adopted from: https://github.com/rust-cli/clap-verbosity-flag

@@ -1,12 +1,12 @@
 [package]
 name = "gchemol-gut"
-version = "0.2.0"
-edition = "2018"
+version = "0.1.8"
+edition = "2021"
 authors = ["Wenping Guo <ybyygu@gmail.com>"]
 description = "Selected utilities for Rust development"
 homepage = "https://github.com/gchemol/gut"
 repository = "https://github.com/gchemol/gut"
-license = "MIT OR Apache-2.0"
+license-file = "LICENSE"
 
 [dependencies]
 # core utils
