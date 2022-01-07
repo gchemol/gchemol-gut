@@ -1,6 +1,6 @@
 [package]
 name = "gchemol-gut"
-version = "0.1.8"
+version = "0.2.0"
 edition = "2018"
 authors = ["Wenping Guo <ybyygu@gmail.com>"]
 description = "Selected utilities for Rust development"
@@ -23,7 +23,7 @@ lazy_static = "1"
 # command line
 structopt = "0.3"
 duct = "0.13"
-clap = {version="3.0.0-rc.7", features = ["derive"]}
+clap = {version="3", features = ["derive"]}
 tempfile = "3"
 # parallel
 rayon = "1"
