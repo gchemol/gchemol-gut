@@ -1,6 +1,6 @@
 [package]
 name = "gchemol-gut"
-version = "0.1.8"
+version = "0.2.0"
 edition = "2021"
 authors = ["Wenping Guo <ybyygu@gmail.com>"]
 description = "Selected utilities for Rust development"
@@ -27,6 +27,7 @@ clap = {version="3", features = ["derive"]}
 tempfile = "3"
 # parallel
 rayon = "1"
+shell-escape = "0.1"
 
 [dev-dependencies]
 

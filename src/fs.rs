@@ -7,6 +7,31 @@ pub use std::path::{Path, PathBuf};
 use anyhow::*;
 // imports:1 ends here
 
+// [[file:../gut.note::ac7549e1][ac7549e1]]
+pub trait ShellEscapeLossyExt {
+    fn shell_escape_lossy(&self) -> std::borrow::Cow<str>;
+}
+
+pub trait ShellEscapeExt {
+    fn shell_escape(&self) -> std::borrow::Cow<str>;
+}
+
+impl ShellEscapeLossyExt for Path {
+    /// Escape characters that may have special meaning in a shell.
+    fn shell_escape_lossy(&self) -> std::borrow::Cow<str> {
+        let s = self.to_string_lossy();
+        shell_escape::escape(s)
+    }
+}
+
+impl<'a> ShellEscapeExt for &'a str {
+    /// Escape characters that may have special meaning in a shell.
+    fn shell_escape(&self) -> std::borrow::Cow<str> {
+        shell_escape::escape((*self).into())
+    }
+}
+// ac7549e1 ends here
+
 // [[file:../gut.note::eabef1ae][eabef1ae]]
 pub use tempfile;
 
@@ -44,3 +69,12 @@ pub fn write_script_file(script_path: &Path, content: &str) -> Result<()> {
     Ok(())
 }
 // eabef1ae ends here
+
+// [[file:../gut.note::d392546b][d392546b]]
+#[test]
+fn test_shell_escape() {
+    let f = "a b/test.sh";
+    let f: &Path = f.as_ref();
+    assert_eq!(f.shell_escape_lossy(), "'a b/test.sh'");
+}
+// d392546b ends here

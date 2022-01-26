@@ -7,7 +7,7 @@ pub mod logger;
 pub mod utils;
 // mods:1 ends here
 
-// [[file:../gut.note::*pub][pub:1]]
+// [[file:../gut.note::b07726f0][b07726f0]]
 pub mod prelude {
     pub use crate::config::Configure;
 
@@ -34,6 +34,9 @@ pub mod prelude {
 
     // FooBar::from_str
     pub use std::str::FromStr;
+
+    // provides shell_escape_lossy method for `Path`
+    pub use crate::fs::{ShellEscapeExt, ShellEscapeLossyExt};
 }
 
 // re-exports external crates
@@ -46,4 +49,4 @@ macro_rules! log_dbg {
         info!("{}:{}", file!(), line!());
     };
 }
-// pub:1 ends here
+// b07726f0 ends here
