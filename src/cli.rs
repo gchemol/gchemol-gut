@@ -1,52 +1,35 @@
-// [[file:../gut.note::0ff169d2][0ff169d2]]
-// NOTE: To make StructOpt derive work, structopt must be included in Cargo.toml
-pub use structopt::*;
-
+// [[file:../gut.note::32071587][32071587]]
+// NOTE: To make Clap derive work, clap must be included in Cargo.toml
+pub use clap::{AppSettings, IntoApp};
+pub use clap::{ArgEnum, Args, Subcommand};
+pub use clap::{Parser, StructOpt};
 pub use duct;
 
-pub use crate::logger::{setup_logger, setup_logger_for_test};
-// 0ff169d2 ends here
+pub use crate::logger::setup_logger;
+pub use crate::logger::setup_logger_for_test;
+// 32071587 ends here
 
-// [[file:../gut.note::*verbose][verbose:1]]
-// adopted from: https://github.com/rust-cli/clap-verbosity-flag
-#[derive(structopt::StructOpt, Debug, Clone, Default)]
+// [[file:../gut.note::352ffd7a][352ffd7a]]
+#[derive(Parser, Debug, Clone, Default)]
 pub struct Verbosity {
-    /// Pass many times for more log output
+    /// Pass many times for more log output (-v, -vv, -vvv)
     ///
     /// By default, it will only report warnings.
-    #[structopt(long, short = "v", parse(from_occurrences))]
+    #[clap(long, short, parse(from_occurrences))]
     verbose: i8,
 }
 
 impl Verbosity {
     /// Set up logging according to verbosity level.
     pub fn setup_logger(&self) {
-        // allow user to override using RUST_LOG env
-        if std::env::var("RUST_LOG").is_err() {
-            match self.verbose {
-                0 => std::env::set_var("RUST_LOG", "warn"),
-                1 => std::env::set_var("RUST_LOG", "info"),
-                2 => std::env::set_var("RUST_LOG", "debug"),
-                _ => std::env::set_var("RUST_LOG", "trace"),
-            }
+        match self.verbose {
+            0 => std::env::set_var("RUST_LOG", "warn"),
+            1 => std::env::set_var("RUST_LOG", "info"),
+            2 => std::env::set_var("RUST_LOG", "debug"),
+            _ => std::env::set_var("RUST_LOG", "trace"),
         }
 
-        crate::logger::setup_logger();
-    }
-
-    /// Set up logging according to verbosity level.
-    pub fn setup_plain_logger(&self) {
-        // allow user to override using RUST_LOG env
-        if std::env::var("RUST_LOG").is_err() {
-            match self.verbose {
-                0 => std::env::set_var("RUST_LOG", "warn"),
-                1 => std::env::set_var("RUST_LOG", "info"),
-                2 => std::env::set_var("RUST_LOG", "debug"),
-                _ => std::env::set_var("RUST_LOG", "trace"),
-            }
-        }
-
-        crate::logger::setup_plain_logger();
+        setup_logger();
     }
 }
-// verbose:1 ends here
+// 352ffd7a ends here

@@ -21,9 +21,8 @@ env_logger = "0.9"
 toml = "0.5"
 lazy_static = "1"
 # command line
-structopt = "0.3"
 duct = "0.13"
-clap = {version="3", features = ["derive"]}
+clap = {version="3.1", features = ["derive"]}
 tempfile = "3"
 # parallel
 rayon = "1"

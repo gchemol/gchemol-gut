@@ -1,11 +1,10 @@
-// [[file:../gut.note::*mods][mods:1]]
+// [[file:../gut.note::36e53031][36e53031]]
 pub mod cli;
-pub mod cli_clap;
 pub mod config;
 pub mod fs;
 pub mod logger;
 pub mod utils;
-// mods:1 ends here
+// 36e53031 ends here
 
 // [[file:../gut.note::b07726f0][b07726f0]]
 pub mod prelude {
