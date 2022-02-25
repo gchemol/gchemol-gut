@@ -8,7 +8,7 @@ fn formatted_builder(test: bool) -> env_logger::Builder {
 }
 // 379d56a3 ends here
 
-// [[file:../gut.note::*pub][pub:1]]
+// [[file:../gut.note::3ba1b0d4][3ba1b0d4]]
 /// Setup logging for cmdline uses
 ///
 /// https://docs.rs/env_logger/*/env_logger/
@@ -25,7 +25,7 @@ pub fn setup_logger() {
     }
     formatted_builder(false).init();
 
-    if !log::log_enabled!(log::Level::Info) {
+    if !log::log_enabled!(log::Level::Warn) {
         eprintln!("To see the full logging, try setting `RUST_LOG=info`.");
     }
 }
@@ -53,4 +53,4 @@ pub fn setup_plain_logger() {
         .format(|buf, record| writeln!(buf, "{}", record.args()))
         .init();
 }
-// pub:1 ends here
+// 3ba1b0d4 ends here
