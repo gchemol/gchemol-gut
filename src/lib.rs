@@ -41,11 +41,25 @@ pub mod prelude {
 // re-exports external crates
 pub use itertools;
 
-/// Similar to dbg! macro, but with logging (info!)
+/// Similar to std::dbg! macro, but print with info! instead of eprintln!
 #[macro_export]
 macro_rules! log_dbg {
     () => {
-        info!("{}:{}", file!(), line!());
+        info!("{}:{}", file!(), line!())
+    };
+    ($val:expr $(,)?) => {
+        // Use of `match` here is intentional because it affects the lifetimes
+        // of temporaries - https://stackoverflow.com/a/48732525/1063961
+        match $val {
+            tmp => {
+                info!("{}:{} {} = {:#?}",
+                      file!(), line!(), stringify!($val), &tmp);
+                tmp
+            }
+        }
+    };
+    ($($val:expr),+ $(,)?) => {
+        ($($crate::log_dbg!($val)),+,)
     };
 }
 // b07726f0 ends here

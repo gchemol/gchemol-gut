@@ -37,7 +37,8 @@ pub use tempfile;
 
 /// Read file content into string
 pub fn read_file<P: AsRef<Path>>(path: P) -> Result<String> {
-    let s = std::fs::read_to_string(&path).with_context(|| format!("Failed to read string from file {:?}", path.as_ref()))?;
+    let s = std::fs::read_to_string(&path)
+        .with_context(|| format!("Failed to read string from file {:?}", path.as_ref()))?;
 
     Ok(s)
 }
@@ -46,7 +47,8 @@ pub fn read_file<P: AsRef<Path>>(path: P) -> Result<String> {
 ///
 /// _Note:_ Replaces the current file content if the file already exists.
 pub fn write_to_file<P: AsRef<Path>>(path: P, content: &str) -> Result<()> {
-    std::fs::write(&path, content.as_bytes()).with_context(|| format!("Failed to write to file {:?}", path.as_ref()))?;
+    std::fs::write(&path, content.as_bytes())
+        .with_context(|| format!("Failed to write to file {:?}", path.as_ref()))?;
 
     Ok(())
 }
