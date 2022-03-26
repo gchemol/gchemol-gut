@@ -24,10 +24,6 @@ pub fn setup_logger() {
         std::env::set_var("RUST_LOG", "debug");
     }
     formatted_builder(false).init();
-
-    if !log::log_enabled!(log::Level::Warn) {
-        eprintln!("To see the full logging, try setting `RUST_LOG=info`.");
-    }
 }
 
 /// Setup logging for cargo test
