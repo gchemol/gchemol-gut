@@ -1,9 +1,20 @@
-// [[file:../gut.note::*utils.rs][utils.rs:1]]
+// [[file:../gut.note::52e47ca0][52e47ca0]]
 use crate::prelude::*;
 
 /// Sleep a few seconds
 pub fn sleep(t: f64) {
     std::thread::sleep(std::time::Duration::from_secs_f64(t));
+}
+
+/// Return unix timestamp in secs
+pub fn unix_timestamp() -> u64 {
+    use std::time::SystemTime;
+
+    if let Ok(t) = SystemTime::now().duration_since(SystemTime::UNIX_EPOCH) {
+        t.as_secs()
+    } else {
+        0
+    }
 }
 
 /// Make an abbreviation of the long number list. Return the string
@@ -112,4 +123,4 @@ fn test_parse_and_abbreviate_numbers() {
     let y = abbreviate_numbers_human_readable(&x).unwrap();
     assert_eq!(y, "2-5,7-9");
 }
-// utils.rs:1 ends here
+// 52e47ca0 ends here
