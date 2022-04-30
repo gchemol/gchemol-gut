@@ -32,7 +32,7 @@ pub fn setup_logger() {
 pub fn setup_logger_for_test() {
     // logging debug by default
     if std::env::var("RUST_LOG").is_err() {
-        std::env::set_var("RUST_LOG", "debug");
+        std::env::set_var("RUST_LOG", "info");
     }
 
     if let Err(e) = formatted_builder(true).try_init() {
