@@ -10,33 +10,6 @@ pub trait Configure: Default + de::DeserializeOwned + Serialize {
         println!("{:}", self.to_toml().unwrap());
     }
 
-    #[deprecated(note = "plan to be removed")]
-    /// Load configuration from default config file.
-    ///
-    /// # Panics
-    ///
-    /// * panics if configuration file does not exist.
-    ///
-    fn load() -> Self {
-        let config_file = format!("{}.conf", env!("CARGO_PKG_NAME"));
-        debug!("load config file: {}", config_file);
-
-        Self::load_from_file(config_file)
-    }
-
-    #[deprecated(note = "plan to be removed")]
-    /// Load configuration from file `config_file`.
-    ///
-    /// # Panics
-    ///
-    /// * panics if config_file does not exist.
-    ///
-    fn load_from_file<P: AsRef<std::path::Path>>(config_file: P) -> Self {
-        let path = config_file.as_ref();
-        let toml_str = crate::fs::read_file(path).expect("Failed to read config file!");
-        toml::from_str(&toml_str).expect("Failed to parse toml config!")
-    }
-
     /// Deserialize an instance of type T from a string of JSON text.
     fn from_json(s: &str) -> Result<Self> {
         let x = serde_json::from_str(s)?;
