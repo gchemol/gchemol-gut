@@ -2,7 +2,7 @@
 use crate::prelude::*;
 // imports:1 ends here
 
-// [[file:../gut.note::*trait][trait:1]]
+// [[file:../gut.note::fdbcfb10][fdbcfb10]]
 pub trait Configure: Default + de::DeserializeOwned + Serialize {
     #[deprecated(note = "plan to be removed")]
     /// Print current configuration in toml format.
@@ -61,13 +61,15 @@ pub trait Configure: Default + de::DeserializeOwned + Serialize {
         Ok(s)
     }
 }
-// trait:1 ends here
+
+impl<T> Configure for T where T: Default + de::DeserializeOwned + Serialize {}
+// fdbcfb10 ends here
 
 // [[file:../gut.note::*reexports][reexports:1]]
 pub use lazy_static::*;
 // reexports:1 ends here
 
-// [[file:../gut.note::*test][test:1]]
+// [[file:../gut.note::4152ca5d][4152ca5d]]
 #[cfg(test)]
 mod test {
     use super::*;
@@ -105,12 +107,10 @@ mod test {
         }
     }
 
-    impl Configure for Settings {}
-
     #[test]
     fn test_settings() {
         let s = Settings::default().to_json().unwrap();
         println!("{}", s);
     }
 }
-// test:1 ends here
+// 4152ca5d ends here
