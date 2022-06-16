@@ -6,6 +6,16 @@ pub fn sleep(t: f64) {
     std::thread::sleep(std::time::Duration::from_secs_f64(t));
 }
 
+/// Create a short alias to hashable object using std hasher
+pub fn hash_code<T: std::hash::Hash + ?Sized>(t: &T) -> String {
+    use std::collections::hash_map::DefaultHasher;
+    use std::hash::Hasher;
+
+    let mut s = DefaultHasher::new();
+    t.hash(&mut s);
+    format!("{:016x}", s.finish())
+}
+
 /// Return unix timestamp in secs
 pub fn unix_timestamp() -> u64 {
     use std::time::SystemTime;
@@ -59,12 +69,7 @@ pub fn abbreviate_numbers_human_readable(numbers: &[usize]) -> Result<String> {
 /// "1 3,5" ==> vec![1, 3, 4, 5]
 ///
 pub fn parse_numbers_human_readable(s: &str) -> Result<Vec<usize>> {
-    let list_or: Result<Vec<_>> = s
-        .trim()
-        .replace(",", " ")
-        .split_whitespace()
-        .map(|s| parse_numbers_field(s))
-        .collect();
+    let list_or: Result<Vec<_>> = s.trim().replace(",", " ").split_whitespace().map(|s| parse_numbers_field(s)).collect();
     let list = list_or
         .with_context(|| format!("invalid {}", s))?
         .concat()
@@ -122,5 +127,22 @@ fn test_parse_and_abbreviate_numbers() {
     let x = parse_numbers_human_readable("2-5,7-9").unwrap();
     let y = abbreviate_numbers_human_readable(&x).unwrap();
     assert_eq!(y, "2-5,7-9");
+}
+
+#[test]
+fn test_hash() {
+    let s1 = "to be or not to be";
+    let s2 = "to be or not to be";
+
+    assert_eq!(hash_code(s1), hash_code(s2));
+    let s3 = "to be or not";
+    assert_ne!(hash_code(s1), hash_code(s3));
+
+    let a1 = [2, 3, 5];
+    let a2 = [2, 3, 4];
+    assert_ne!(hash_code(&a1), hash_code(&a2));
+
+    dbg!(format!("{:016x}", 1));
+    dbg!(format!("{:016x}", 19882828));
 }
 // 52e47ca0 ends here
