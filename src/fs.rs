@@ -55,6 +55,7 @@ pub fn write_to_file<P: AsRef<Path>>(path: P, content: &str) -> Result<()> {
 
 /// Create an executable script. The leading directories will automatically
 /// created.
+#[cfg(unix)]
 pub fn write_script_file(script_path: &Path, content: &str) -> Result<()> {
     use std::fs;
     use std::os::unix::fs::PermissionsExt;
