@@ -44,6 +44,10 @@ pub fn setup_logger_for_test() {
 pub fn setup_plain_logger() {
     use std::io::Write;
 
+    if std::env::var("RUST_LOG").is_err() {
+        std::env::set_var("RUST_LOG", "info");
+    }
+
     env_logger::builder()
         .target(env_logger::Target::Stdout)
         .format(|buf, record| writeln!(buf, "{}", record.args()))
