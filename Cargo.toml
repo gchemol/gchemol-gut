@@ -1,6 +1,6 @@
 [package]
 name = "gchemol-gut"
-version = "0.3.1"
+version = "0.4.0"
 edition = "2021"
 authors = ["Wenping Guo <ybyygu@gmail.com>"]
 description = "Selected utilities for Rust development"
@@ -10,9 +10,9 @@ license-file = "LICENSE"
 
 [dependencies]
 # core utils
-serde = {version="1", features = ["derive"]}
+serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-anyhow = "1"                    # better than failure
+anyhow = "1"                                     # better than failure
 itertools = "0.10"
 # logging
 log = "0.4"
@@ -22,7 +22,8 @@ toml = "0.5"
 lazy_static = "1"
 # command line
 duct = "0.13"
-clap = {version="3.1", features = ["derive"]}
+# https://docs.rs/clap/latest/clap/_features/index.html
+clap = { version = "4.0.18", features = ["derive", "env", "cargo"] }
 tempfile = "3"
 # parallel
 rayon = "1"

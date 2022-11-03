@@ -1,8 +1,8 @@
 // [[file:../gut.note::32071587][32071587]]
-// NOTE: To make Clap derive work, clap must be included in Cargo.toml
-pub use clap::{AppSettings, IntoApp};
-pub use clap::{ArgEnum, Args, Subcommand};
-pub use clap::{Parser, StructOpt};
+/// NOTE: To make Clap derive work, clap must be included in Cargo.toml
+pub use clap::CommandFactory as IntoApp; // into_app => command
+pub use clap::Parser as StructOpt;
+pub use clap::{ArgAction, Args, Parser, Subcommand, ValueEnum};
 pub use duct;
 
 pub use crate::logger::setup_logger;
@@ -15,8 +15,8 @@ pub struct Verbosity {
     /// Pass many times for more log output (-v, -vv, -vvv)
     ///
     /// By default, it will only report warnings.
-    #[clap(long, short, parse(from_occurrences))]
-    verbose: i8,
+    #[arg(long, short, action = ArgAction::Count)]
+    verbose: u8,
 }
 
 impl Verbosity {
