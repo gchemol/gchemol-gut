@@ -31,5 +31,12 @@ impl Verbosity {
 
         setup_logger();
     }
+
+    /// Set verbosity level.
+    ///
+    /// 0 => warn, 1 => info, 2 => debug, 3 or above => trace
+    pub fn set_verbosity(&mut self, level: u8) {
+        self.verbose = level;
+    }
 }
 // 352ffd7a ends here
