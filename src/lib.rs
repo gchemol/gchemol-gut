@@ -13,6 +13,7 @@ pub mod prelude {
     pub use itertools::Itertools;
 
     pub use anyhow::Context as _Context; // avoid name conflicting
+    pub use anyhow::Ok as Ok_; // useful when return a Result in a closure
     pub use anyhow::{anyhow, bail, ensure, format_err};
     pub use anyhow::{Error, Result};
 
