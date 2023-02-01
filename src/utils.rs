@@ -1,6 +1,15 @@
 // [[file:../gut.note::52e47ca0][52e47ca0]]
 use crate::prelude::*;
 
+/// Run function and return seconds duration
+pub fn time_fn<T>(f: impl FnOnce() -> T) -> f64 {
+    use time::Duration;
+
+    let (t, _) = Duration::time_fn(f);
+    let runtime = t.as_seconds_f64();
+    runtime
+}
+
 /// Sleep a few seconds
 pub fn sleep(t: f64) {
     std::thread::sleep(std::time::Duration::from_secs_f64(t));
