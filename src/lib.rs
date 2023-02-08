@@ -41,6 +41,7 @@ pub mod prelude {
 
 // re-exports external crates
 pub use itertools;
+pub use rayon;
 
 /// Similar to std::dbg! macro, but print with info! instead of eprintln!
 #[macro_export]
