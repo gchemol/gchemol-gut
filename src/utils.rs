@@ -6,8 +6,7 @@ pub fn time_fn<T>(f: impl FnOnce() -> T) -> f64 {
     use time::Duration;
 
     let (t, _) = Duration::time_fn(f);
-    let runtime = t.as_seconds_f64();
-    runtime
+    t.as_seconds_f64()
 }
 
 /// Sleep a few seconds
@@ -78,7 +77,7 @@ pub fn abbreviate_numbers_human_readable(numbers: &[usize]) -> Result<String> {
 /// "1 3,5" ==> vec![1, 3, 4, 5]
 ///
 pub fn parse_numbers_human_readable(s: &str) -> Result<Vec<usize>> {
-    let list_or: Result<Vec<_>> = s.trim().replace(",", " ").split_whitespace().map(|s| parse_numbers_field(s)).collect();
+    let list_or: Result<Vec<_>> = s.trim().replace(',', " ").split_whitespace().map(parse_numbers_field).collect();
     let list = list_or
         .with_context(|| format!("invalid {}", s))?
         .concat()
@@ -95,8 +94,8 @@ fn parse_numbers_field(s: &str) -> Result<Vec<usize>> {
     match s.parse() {
         Ok(n) => Ok(vec![n]),
         Err(_) => {
-            if s.contains("-") {
-                let nn: Result<Vec<_>> = s.split("-").map(|k| k.parse::<usize>().context("atom list range")).collect();
+            if s.contains('-') {
+                let nn: Result<Vec<_>> = s.split('-').map(|k| k.parse::<usize>().context("atom list range")).collect();
                 match nn?.as_slice() {
                     [a, b] => Ok((*a..=*b).collect()),
                     rest => bail!("invalid atom list range: {:?}", rest),

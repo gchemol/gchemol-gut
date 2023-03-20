@@ -1,4 +1,6 @@
 // [[file:../gut.note::36e53031][36e53031]]
+#![deny(clippy::all)]
+
 pub mod cli;
 pub mod config;
 pub mod fs;
