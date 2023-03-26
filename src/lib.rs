@@ -1,9 +1,12 @@
 // [[file:../gut.note::36e53031][36e53031]]
 #![deny(clippy::all)]
 
+#[cfg(not(target_arch = "wasm32"))]
 pub mod cli;
-pub mod config;
+#[cfg(not(target_arch = "wasm32"))]
 pub mod fs;
+
+pub mod config;
 pub mod logger;
 pub mod utils;
 // 36e53031 ends here
@@ -38,6 +41,7 @@ pub mod prelude {
     pub use std::str::FromStr;
 
     // provides shell_escape_lossy method for `Path`
+    #[cfg(not(target_arch = "wasm32"))]
     pub use crate::fs::{ShellEscapeExt, ShellEscapeLossyExt};
 }
 

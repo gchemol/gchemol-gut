@@ -1,6 +1,6 @@
 [package]
 name = "gchemol-gut"
-version = "0.4.3"
+version = "0.4.4"
 edition = "2021"
 authors = ["Wenping Guo <ybyygu@gmail.com>"]
 description = "Selected utilities for Rust development"
@@ -16,19 +16,21 @@ anyhow = "1"                                     # better than failure
 itertools = "0.10"
 # logging
 log = "0.4"
-env_logger = "0.9"
+env_logger = "0.10"
 # configuration
-toml = "0.5"
+toml = "0.7.3"
 lazy_static = "1"
-# command line
-duct = "0.13"
 # https://docs.rs/clap/latest/clap/_features/index.html
 clap = { version = "4.0.18", features = ["derive", "env", "cargo"] }
-tempfile = "3"
 # parallel
 rayon = "1"
 shell-escape = "0.1"
 time = "0.3.17"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+# command line
+duct = "0.13"
+tempfile = "3"
 
 [dev-dependencies]
 
